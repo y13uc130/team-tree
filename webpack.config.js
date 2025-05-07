@@ -10,7 +10,15 @@ module.exports = {
   },
   mode: "development",
   devServer: {
-    static: "./dist",
+    static: [
+      {
+        directory: path.resolve(__dirname, "dist"),
+      },
+      {
+        directory: path.resolve(__dirname, "public"),
+        publicPath: "/",
+      },
+    ],
     hot: true,
     historyApiFallback: true,
   },

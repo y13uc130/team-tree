@@ -7,6 +7,7 @@ import React, { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import "./styles.scss";
 import { setCookie, getCookie } from "../../utils/cookies";
+import { brokers } from "../../constants";
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -301,7 +302,7 @@ const LoginPage = () => {
                   </div>
                   <div className="otpsubHeader mb-8">
                     OTP sent to <span className="ml-0.5">{values.phone}</span>{" "}
-                    (Hint: Type anything)
+                    (Hint: Type anything (only numbers though!))
                   </div>
                   <div class="flex space-x-2 justify-center mb-8">
                     {[...Array(6)].map((_, index) => (
@@ -325,6 +326,19 @@ const LoginPage = () => {
           );
         }}
       </Formik>
+      <div className="brokers-section">
+        <div className="text">Supported Brokers</div>
+        <div className="inner-content">
+          {brokers.map(({ name, img }, brokerIndex) => {
+            return (
+              <div className="broker-box">
+                <img src={img} alt={name} className="brokerImg" />
+                <div>{name}</div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
     </div>
   );
 };

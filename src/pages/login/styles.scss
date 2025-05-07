@@ -34,7 +34,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 40px 20px 10px 40px;
+    padding: 40px 20px;
 
     .formHeader {
       font-weight: 600;
@@ -261,4 +261,42 @@ h1.header {
   padding-top: 40px;
   padding-bottom: 24px;
   max-width: 900px;
+}
+
+.brokers-section {
+  width: 648px;
+  text-align: center;
+  margin-top: 32px;
+  .text {
+    font-weight: 600;
+    color: rgb(49, 52, 60);
+    font-size: 16px;
+    padding-bottom: 12px;
+  }
+  .inner-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .broker-box {
+      border-radius: 8px;
+      border: 1px solid #e4e7ec;
+      background: rgb(255, 255, 255);
+      box-shadow: rgba(0, 0, 0, 0.1) 0px 3px 12px 0px;
+      width: 120px;
+      aspect-ratio: 1/1;
+      padding: 12px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      cursor: pointer;
+      div {
+        margin-top: 12px;
+      }
+      img {
+        width: 50px;
+        aspect-ratio: 1/1;
+      }
+    }
+  }
 }
