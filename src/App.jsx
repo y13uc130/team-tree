@@ -18,16 +18,21 @@ import React from "react";
 import "./tailwind.css";
 import "./styles.scss";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import UserProfile from "./components/profile/UserProfile";
+import Dashboard from "./pages/dashboard/Dashboard";
 import LoginPage from "./pages/login/login";
+import Holdings from "./pages/holdings/Holdings";
 
 const App = () => {
   return (
     <div className="app">
       <Router>
         <Routes>
+          <Route path="/dashboard" element={<Dashboard />}>
+            <Route path="holdings" element={<Holdings />} />
+            <Route path="orderbook" element={<div>orderbook</div>} />
+            <Route path="positions" element={<div>positions</div>} />
+          </Route>
           <Route path="/" element={<LoginPage />} />
-          <Route path="/dashboard" element={<UserProfile />} />
         </Routes>
       </Router>
     </div>

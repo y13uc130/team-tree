@@ -4,9 +4,11 @@ import { resetUser } from "../../store/user/userSlice";
 import { useDispatch, useSelector } from "react-redux";
 import "./styles.scss";
 import { getCookie } from "../../utils/cookies";
-import { useNavigate } from "react-router";
+import { Outlet, useNavigate } from "react-router";
 
-const UserProfile = () => {
+const tabs = ["Holdings", "Orderbook", "Positions"];
+
+const Dashboard = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -29,16 +31,34 @@ const UserProfile = () => {
     };
   }, []);
 
+  const handleTabPress = (event) => {
+    event.stopPropagation();
+    navigate(`/dashboard/${event.target.dataset.tabId?.toLowerCase()}`);
+  };
+
   if (loading) return <p>Loading user...</p>;
   if (error) return <p style={{ color: "red" }}>Error: {error}</p>;
   if (!profile) return <p>No user data found.</p>;
 
   return (
     <div className="container">
-      <p>{profile.name}</p>
-      <p>{profile.email}</p>
+      <div className="navBar">
+        <div className="home-button">Home</div>
+        <div className="tabs" onClick={handleTabPress}>
+          {tabs.map((tab, tabIndex) => {
+            return (
+              <div data-tab-id={tab} className="tab-section">
+                {tab}
+              </div>
+            );
+          })}
+        </div>
+      </div>
+      <div className="dashboard-container">
+        <Outlet />
+      </div>
     </div>
   );
 };
 
-export default UserProfile;
+export default Dashboard;
