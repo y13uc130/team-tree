@@ -15,16 +15,21 @@
  */
 
 import React from "react";
+import "./tailwind.css";
 import "./styles.scss";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import UserProfile from "./components/profile/UserProfile";
+import LoginPage from "./pages/login/login";
 
 const App = () => {
   return (
     <div className="app">
-      <h1>Multi Stock Broker Platform</h1>
-      <div className="profile-container">
-        <UserProfile />
-      </div>
+      <Router>
+        <Routes>
+          <Route path="/" element={<LoginPage />} />
+          <Route path="/dashboard" element={<UserProfile />} />
+        </Routes>
+      </Router>
     </div>
   );
 };
