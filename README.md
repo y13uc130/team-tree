@@ -1,6 +1,6 @@
 Welcome! This is a frontend assignment for a stock trading platform where users can view their holdings, positions, and execute basic trade flows.
 
-#🚀 Steps to Run the App
+## 🚀 Steps to Run the App
 
 1. nvm install 20 (if not already installed)
 2. nvm use 20
@@ -13,12 +13,12 @@ Welcome! This is a frontend assignment for a stock trading platform where users 
 9. You can hover on instruments to see buy/sell option -> which on click -> opens the trading modal
 10. To logout, go to inspect->application->cookies->delete "user-details" cookie & reload
 
-##⚠️ Notes
+## ⚠️ Notes
 This version is desktop-only (no tablet/mobile responsiveness yet)
 
 Focused mostly on login flow and instruments UI
 
-🛠️ Things to Improve (if more time available)
+## 🛠️ Things to Improve (if more time available)
 
 1. Proper API response mocking
 2. Update holdings/positions after buy/sell actions
