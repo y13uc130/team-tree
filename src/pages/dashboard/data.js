@@ -36,7 +36,7 @@ export const instruments = {
       id: "NSE:INE155A01022",
       weight: 3,
       note: null,
-      tradingsymbol: "TATAMOTORS",
+      tradingsymbol: "HUDCO",
       instrument_token: 884737,
       segment: "NSE",
       exchange: "NSE",
@@ -45,7 +45,7 @@ export const instruments = {
         value: 0.67,
         percentage: -0.7,
       },
-      value: 238.67,
+      value: 208.47,
     },
     {
       id: "NSE:INE02PY01013",
@@ -135,7 +135,7 @@ export const instruments = {
         value: 9.11,
         percentage: -2.1,
       },
-      value: 282,
+      value: 186.48,
     },
     {
       id: "NSE:INE134E01011",
@@ -186,7 +186,7 @@ export const instruments = {
       id: "NSE:INE155A01022",
       weight: 3,
       note: null,
-      tradingsymbol: "TATAMOTORS",
+      tradingsymbol: "HUDCO",
       instrument_token: 884737,
       segment: "NSE",
       exchange: "NSE",
@@ -195,7 +195,7 @@ export const instruments = {
         value: 0.67,
         percentage: -0.7,
       },
-      value: 238.67,
+      value: 208.47,
     },
     {
       id: "NSE:INE02PY01013",
@@ -285,7 +285,7 @@ export const instruments = {
         value: 9.11,
         percentage: -2.1,
       },
-      value: 282,
+      value: 186.48,
     },
     {
       id: "NSE:INE134E01011",
@@ -336,7 +336,7 @@ export const instruments = {
       id: "NSE:INE155A01022",
       weight: 3,
       note: null,
-      tradingsymbol: "TATAMOTORS",
+      tradingsymbol: "HUDCO",
       instrument_token: 884737,
       segment: "NSE",
       exchange: "NSE",
@@ -345,7 +345,7 @@ export const instruments = {
         value: 0.67,
         percentage: -0.7,
       },
-      value: 238.67,
+      value: 208.47,
     },
     {
       id: "NSE:INE02PY01013",
@@ -435,7 +435,7 @@ export const instruments = {
         value: 9.11,
         percentage: -2.1,
       },
-      value: 282,
+      value: 186.48,
     },
     {
       id: "NSE:INE134E01011",
@@ -486,7 +486,7 @@ export const instruments = {
       id: "NSE:INE155A01022",
       weight: 3,
       note: null,
-      tradingsymbol: "TATAMOTORS",
+      tradingsymbol: "HUDCO",
       instrument_token: 884737,
       segment: "NSE",
       exchange: "NSE",
@@ -495,7 +495,7 @@ export const instruments = {
         value: 0.67,
         percentage: -0.7,
       },
-      value: 238.67,
+      value: 208.47,
     },
     {
       id: "NSE:INE02PY01013",
@@ -585,7 +585,7 @@ export const instruments = {
         value: 9.11,
         percentage: -2.1,
       },
-      value: 282,
+      value: 186.48,
     },
     {
       id: "NSE:INE134E01011",
@@ -603,4 +603,49 @@ export const instruments = {
       value: 12565,
     },
   ],
+};
+
+export const userHoldings = [
+  {
+    tradingSymbol: "HUDCO",
+    quantity: 10,
+    avgCost: 227.39,
+    ltp: 208.45,
+    invested: 2273.92,
+    currValue: 2084.5,
+    pnl: -189.42,
+    netChg: -8.33,
+    dayChg: -1.42,
+  },
+  {
+    tradingSymbol: "IREDA",
+    quantity: 5,
+    avgCost: 176.2,
+    ltp: 156.48,
+    invested: 881,
+    currValue: 782.4,
+    pnl: -98.6,
+    netChg: -11.19,
+    dayChg: -1.45,
+  },
+];
+
+export const userPnL = {
+  totalInvestment: 3154.92,
+  currentValue: 2873.4,
+  dayPnL: {
+    value: 35.05,
+    percentage: 1.21,
+  },
+  totalPnL: {
+    value: -281.52,
+    percentage: -8.92,
+  },
+};
+
+export const USER_PNL_MAPPING = {
+  totalInvestment: "Total investment",
+  currentValue: "Current value",
+  dayPnL: "Day's P&L",
+  totalPnL: "Total P&L",
 };

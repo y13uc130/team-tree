@@ -106,3 +106,22 @@
   opacity: 1;
   pointer-events: auto;
 }
+
+.instruments-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.instruments-container::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.instruments-container::-webkit-scrollbar-thumb {
+  background-color: #888888d5;
+  border-radius: 8px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+
+.instruments-container::-webkit-scrollbar-thumb:hover {
+  background-color: #555555ee;
+}

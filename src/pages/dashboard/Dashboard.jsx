@@ -1,26 +1,40 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
+import Draggable from "react-draggable";
 import classnames from "classnames";
 import { fetchUserProfile } from "../../store/user/userThunks";
 import { resetUser } from "../../store/user/userSlice";
 import { useDispatch, useSelector } from "react-redux";
 import "./styles.scss";
-import { instruments } from "./data.js";
 import { getCookie } from "../../utils/cookies";
 import { Outlet, useLocation, useNavigate } from "react-router";
 import Instruments from "../../components/instruments/Instruments";
 import TradeModal from "../../components/tradeModal/TradeModal.jsx";
 import { setShowTradeModal } from "../../store/trade/tradeSlice.js";
+import { normalizeByTradingSymbol } from "../../store/instruments/instrumentsSlice.js";
+import { useOnClickOutside } from "../../hooks/useClickOutside.js";
 
-const tabs = ["dashboard", "Holdings", "Orderbook", "Positions"];
+const tabs = ["Holdings", "Orderbook", "Positions"];
 
 const Dashboard = () => {
+  const draggableCTARef = useRef(null);
   const [selectedTab, setSelectedTab] = useState(tabs[0]);
+  const [showBuySell, setShowBuySell] = useState(false);
   const dispatch = useDispatch();
   const location = useLocation();
   const navigate = useNavigate();
 
   const { profile, loading, error } = useSelector((state) => state.user);
+  const { instruments = [] } = useSelector((state) => state.instruments);
   const { showTradeModal, selectedTrade } = useSelector((state) => state.trade);
+
+  useOnClickOutside({
+    refs: [draggableCTARef],
+    handler: () => {
+      setShowBuySell(false);
+    },
+    enabled: true,
+    detectEscape: true,
+  });
 
   useEffect(() => {
     const userDetails = getCookie("userDetails");
@@ -32,9 +46,16 @@ const Dashboard = () => {
   useEffect(() => {}, [showTradeModal, selectedTrade]);
 
   useEffect(() => {
-    const pathname = location.pathname.replace(/\/dashboard\//g, "");
-    const tab = pathname.charAt(0).toUpperCase() + pathname.slice(1);
-    setSelectedTab(tab);
+    const pathname = location.pathname.replace(
+      /^\/dashboard\/?|\/dashboard$/g,
+      ""
+    );
+    if (!pathname) {
+      navigate(`/dashboard/${selectedTab?.toLowerCase()}`);
+    } else {
+      const tab = pathname.charAt(0).toUpperCase() + pathname.slice(1);
+      setSelectedTab(tab);
+    }
   }, []);
 
   useEffect(() => {
@@ -60,6 +81,28 @@ const Dashboard = () => {
   const handleTradeModalClose = () => {
     dispatch(setShowTradeModal({ active: false }));
   };
+
+  const handleDraggableCTAClick = () => {
+    setShowBuySell(!showBuySell);
+  };
+  const handleBuySellClick = useCallback(
+    (btnId) => {
+      setShowBuySell(false);
+      if (!instruments.length) return;
+      const firstInstrument = instruments?.[0];
+      dispatch(
+        setShowTradeModal({
+          active: true,
+          data: {
+            symbol: firstInstrument?.tradingsymbol,
+            info: firstInstrument,
+            btnId,
+          },
+        })
+      );
+    },
+    [instruments]
+  );
 
   if (loading) return <p>Loading user...</p>;
   if (error) return <p style={{ color: "red" }}>Error: {error}</p>;
@@ -95,11 +138,38 @@ const Dashboard = () => {
       </div>
       <div className="dashboard-container">
         <div className="left-container">
-          <Instruments instruments={instruments.items} />
+          <Instruments />
         </div>
         <div className="right-container">
           <Outlet />
         </div>
+        <Draggable nodeRef={draggableCTARef}>
+          <div
+            onClick={handleDraggableCTAClick}
+            ref={draggableCTARef}
+            className="draggable-fab"
+          >
+            <div>Buy/Sell</div>
+            {showBuySell ? (
+              <>
+                <div className="buy-sell">
+                  <button
+                    onClick={() => handleBuySellClick("buy")}
+                    className="buy"
+                  >
+                    B
+                  </button>
+                  <button
+                    onClick={() => handleBuySellClick("sell")}
+                    className="sell"
+                  >
+                    S
+                  </button>
+                </div>
+              </>
+            ) : null}
+          </div>
+        </Draggable>
       </div>
     </div>
   );

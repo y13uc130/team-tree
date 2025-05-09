@@ -1,0 +1,142 @@
+.main-container {
+  padding: 20px;
+  h2 {
+    font-size: 16px;
+    font-weight: 400;
+    color: #473c3c;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+  .pnl-section {
+    margin-top: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    margin-bottom: 24px;
+    .details-section {
+      flex-basis: calc(25% - 10px);
+      .title {
+        color: #473c3caf;
+      }
+      .value {
+        font-size: 17px;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        sub {
+          bottom: 1px;
+          font-size: 8px;
+          left: -3px;
+          color: #463b3bc1;
+        }
+        .percentage {
+          margin-left: 4px;
+          height: fit-content;
+          font-size: 9px;
+          padding: 3px 5px;
+          border-radius: 6px;
+          font-weight: 400;
+        }
+        .percentage.loss {
+          background-color: #e684673b;
+          color: #ff5722;
+        }
+        .percentage.profit {
+          background-color: rgba(30, 183, 30, 0.241);
+          color: rgb(30, 183, 30);
+        }
+      }
+      .value:has(.percentage).loss {
+        color: #ff5722;
+        sub {
+          color: #ff5722;
+        }
+      }
+      .value:has(.percentage).profit {
+        color: rgb(30, 183, 30);
+        sub {
+          color: rgb(30, 183, 30);
+        }
+      }
+    }
+    @media (max-width: 768px) {
+      flex-wrap: wrap;
+      .details-section {
+        flex-basis: calc(100% - 10px);
+      }
+    }
+  }
+  .table-container {
+    width: 100%;
+    overflow-x: auto;
+  }
+
+  .holdings-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+  }
+
+  .holdings-table thead {
+    border-top: 1px solid #f1f1f1;
+    text-align: left;
+  }
+
+  .holdings-table th,
+  .holdings-table td {
+    padding: 12px 16px;
+    font-size: 14px;
+    border-bottom: 1px solid #f3efef;
+    white-space: nowrap;
+    text-align: right;
+  }
+  .holdings-table th {
+    font-weight: 400;
+    font-size: 12px;
+    color: #473c3cc2;
+  }
+  .holdings-table td {
+    font-weight: 400;
+    cursor: pointer;
+  }
+  .holdings-table td:nth-child(1),
+  .holdings-table th:nth-child(1),
+  .holdings-table td:nth-child(4),
+  .holdings-table th:nth-child(4) {
+    border-right: 1px solid #f1f1f1;
+  }
+
+  .holdings-table td:nth-child(1),
+  .holdings-table th:nth-child(1) {
+    text-align: left;
+    min-width: 150px;
+    white-space: nowrap;
+  }
+
+  .loss {
+    color: #ff5722;
+  }
+
+  .profit {
+    color: rgb(30, 183, 30);
+  }
+  @media (max-width: 768px) {
+    .holdings-table th,
+    .holdings-table td {
+      padding: 10px 8px;
+      font-size: 13px;
+    }
+
+    .holdings-table th:nth-child(1),
+    .holdings-table td:nth-child(1) {
+      min-width: 120px;
+    }
+
+    .table-container {
+      overflow-x: auto;
+    }
+  }
+}

@@ -1,4 +1,4 @@
-import { instruments } from "../pages/dashboard/data";
+import { instruments, userHoldings, userPnL } from "../pages/dashboard/data";
 
 export const getUserProfile = (userId) => {
   return new Promise((resolve) => {
@@ -9,6 +9,8 @@ export const getUserProfile = (userId) => {
           name: "Kancharla Intel",
           email: "tejaintel07@gmail.com",
           role: "user",
+          userPnL,
+          userHoldings,
         },
       });
     }, 1000);

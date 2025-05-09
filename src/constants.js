@@ -53,3 +53,17 @@ export const TRADE_FORM_INPUT_FIELDS = [
     type: "number",
   },
 ];
+
+export const RUPEE_SYMBOL = "₹";
+
+export const HOLDINGS_TABLE_COLUMNS = [
+  "Instrument",
+  "Qty.",
+  "Avg. cost",
+  "LTP",
+  "Invested",
+  "Cur. val",
+  "P&L",
+  "Net chg.",
+  "Day chg.",
+];
