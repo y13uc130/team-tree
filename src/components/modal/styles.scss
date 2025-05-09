@@ -1,0 +1,37 @@
+.modal-container {
+  z-index: 1001;
+  position: fixed;
+  inset: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .modal-content {
+    position: absolute;
+    z-index: 2;
+    border-radius: 8px;
+    border: 1px solid #e4e7ec;
+    background: rgb(255, 255, 255);
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 3px 12px 0px;
+    width: 348px;
+    aspect-ratio: 1/1;
+    .close-button {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      width: 18px;
+      height: 18px;
+      z-index: 1;
+      display: flex;
+      justify-content: center;
+      cursor: pointer;
+      align-items: center;
+      svg {
+        width: 100%;
+        aspect-ratio: 1/1;
+      }
+    }
+  }
+}

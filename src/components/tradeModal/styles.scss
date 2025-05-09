@@ -1,0 +1,105 @@
+.top-section {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  font-size: 12px;
+  font-weight: 400;
+  padding: 17px 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  .top-left-section {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex: 1;
+    gap: 8px;
+    font-weight: 500;
+  }
+  .top-right-section {
+    margin-right: 20px;
+  }
+}
+
+.main-section {
+  .tab-trade-type-section {
+    padding: 17px 15px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    .tab-section {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 15px;
+      font-weight: 500;
+      margin-bottom: 15px;
+      .tab {
+        flex-basis: 50%;
+        padding: 6px 0;
+        border-radius: 8px;
+        background-color: rgba(0, 0, 0, 0.1);
+        color: black;
+      }
+      .buy {
+        background-color: rgb(30, 183, 30);
+        color: white;
+      }
+      .sell {
+        background-color: rgba(223, 43, 43, 0.975);
+        color: white;
+      }
+    }
+    .order-type-section {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      .order-tab {
+        cursor: pointer;
+        flex-basis: 50%;
+        padding: 6px 0;
+        border-radius: 8px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: rgba(0, 0, 0, 0.1);
+        color: black;
+      }
+      .active {
+        background-color: white;
+        border: 1px solid rgb(133, 184, 231);
+        color: rgb(133, 184, 231);
+      }
+    }
+  }
+  .form-section {
+    padding: 17px 15px;
+    display: flex;
+    // justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+    font-weight: 400;
+    font-size: 12px;
+    color: rgb(49, 52, 60);
+    .field-container {
+      flex-basis: calc(50% - 8px);
+      position: relative;
+      margin-bottom: 8px;
+      input {
+        position: relative;
+        width: 100%;
+        border-radius: 6px;
+        border: 1px solid rgba(193, 195, 200, 0.928);
+        outline: none;
+      }
+      .title {
+        margin-bottom: 4px;
+      }
+    }
+  }
+}
+
+.green {
+  color: rgb(30, 183, 30);
+}
+.red {
+  color: rgba(223, 43, 43, 0.975);
+}

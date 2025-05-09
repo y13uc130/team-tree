@@ -9,7 +9,7 @@
   justify-content: center;
 }
 .green-color {
-  color: #109648;
+  color: rgb(30, 183, 30);
 } // TODO: intel check, maintain themes (optional)
 .App {
   background-color: #f3f5fc;
@@ -153,10 +153,10 @@
         width: 180px;
       }
       button[data-btn-id="success"] {
-        background-color: green;
+        background-color: rgb(30, 183, 30);
       }
       button[data-btn-id="failure"] {
-        background-color: red;
+        background-color: rgba(223, 43, 43, 0.975);
       }
       button[data-btn-id="server-error"] {
         background-color: brown;
@@ -219,14 +219,14 @@
           font-size: 20px;
         }
         .offerBtnStyle {
-          background-color: #109648 !important;
+          background-color: rgb(30, 183, 30) !important;
           font-family: Poppins !important;
           letter-spacing: normal;
           text-transform: capitalize !important;
         }
         .leftContent {
           font-weight: 500;
-          color: #109648;
+          color: rgb(30, 183, 30);
           font-size: 14px;
           display: flex;
           justify-content: space-between;
