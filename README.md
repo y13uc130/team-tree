@@ -1,6 +1,6 @@
 Welcome! This is a frontend assignment for a stock trading platform where users can view their holdings, positions, and execute basic trade flows.
 
-Click here for [Screenshots of the UI views](https://excalidraw.com/#json=tky-c3h6wKnyJWW0AKxTW,hYxMjbGU8r3D-6CPBufsrw)
+Click here for [Screenshots of the UI views](https://excalidraw.com/#json=GcroxbkDlRd_GVIc2S87m,yTrmdbOpbjVgFPSCavHMqg)
 Clicke here to access the [Deployed website link](https://funds-india.netlify.app/) of this assignment 
 
 ## 🚀 Steps to Run the App
