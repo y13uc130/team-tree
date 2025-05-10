@@ -65,7 +65,7 @@
   left: 0;
   right: 0;
   height: 65px;
-  z-index: 1000;
+  z-index: 190;
   background-color: white;
   box-shadow: 7px -2px 10px 11px rgba(0, 0, 0, 0.1);
   display: flex;
@@ -116,7 +116,10 @@
     height: 100%;
     position: relative;
   }
-  .desktop {
+  .hide-instruments {
+    display: initial;
+  }
+  .hide-right-container {
     display: initial;
   }
   @media (max-width: 768px) {
@@ -124,12 +127,15 @@
       flex-basis: 100%;
       max-width: 100%;
     }
-    .desktop {
-      display: none;
-    }
     .right-container {
       flex-basis: 100%;
       max-width: 100%;
+    }
+    .hide-instruments {
+      display: none;
+    }
+    .hide-right-container {
+      display: none;
     }
   }
   .draggable-fab {
@@ -149,15 +155,13 @@
     align-items: center;
     cursor: move;
     user-select: none;
+    transform: translate(-50%, -50%);
     background: radial-gradient(circle at 30% 30%, #ff6b6b, #c0392b);
     border-radius: 50%;
     box-shadow: inset -4px -4px 8px rgba(255, 255, 255, 0.4),
       inset 4px 4px 12px rgba(206, 90, 1, 0.3),
       0 10px 20px rgba(233, 104, 13, 0.4);
     transition: box-shadow 0.2s;
-    @media (max-width: 768px) {
-      display: none;
-    }
     .buy-sell {
       position: absolute;
       top: -28px;

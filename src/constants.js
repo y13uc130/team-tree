@@ -1,5 +1,3 @@
-// constants
-
 export const brokers = [
   {
     name: "Zerodha",

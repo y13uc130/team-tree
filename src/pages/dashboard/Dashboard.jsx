@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
+import { motion } from "framer-motion";
 import Draggable from "react-draggable";
 import classnames from "classnames";
 import { fetchUserProfile } from "../../store/user/userThunks";
@@ -11,6 +12,7 @@ import Instruments from "../../components/instruments/Instruments";
 import TradeModal from "../../components/tradeModal/TradeModal.jsx";
 import { setShowTradeModal } from "../../store/trade/tradeSlice.js";
 import { useOnClickOutside } from "../../hooks/useClickOutside.js";
+import { normalizeByTradingSymbol } from "../../store/instruments/instrumentsSlice.js";
 
 const tabs = ["Holdings", "Orderbook", "Positions"];
 
@@ -25,6 +27,63 @@ const Dashboard = () => {
   const { profile, loading, error } = useSelector((state) => state.user);
   const { instruments = [] } = useSelector((state) => state.instruments);
   const { showTradeModal, selectedTrade } = useSelector((state) => state.trade);
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [shouldReset, setShouldReset] = useState(false);
+
+  const [scaleDown, setScaleDown] = useState(false);
+  const [hoveredInstrument, setHoveredInstrument] = useState(null);
+  const instrumentRectsRef = useRef([]);
+
+  const updateInstrumentRect = (index, rect, name) => {
+    instrumentRectsRef.current[index] = { name, rect };
+  };
+
+  const handleDragStart = (e) => {
+    e.stopPropagation();
+  };
+
+  const handleDrag = (e, data) => {
+    const draggedRect = e.target.getBoundingClientRect();
+    setPosition({ x: data.x, y: data.y });
+
+    let matched = null;
+
+    for (const item of instrumentRectsRef.current) {
+      const r = item.rect;
+      if (
+        draggedRect.left < r.right &&
+        draggedRect.right > r.left &&
+        draggedRect.top < r.bottom &&
+        draggedRect.bottom > r.top
+      ) {
+        matched = item.name;
+        break;
+      }
+    }
+
+    setHoveredInstrument(matched);
+    setScaleDown(!!matched);
+  };
+
+  const handleDragStop = () => {
+    if (hoveredInstrument) {
+      dispatch(
+        setShowTradeModal({
+          active: true,
+          data: {
+            symbol: hoveredInstrument,
+            info: normalizeByTradingSymbol(instruments)?.[hoveredInstrument],
+            btnId: "buy",
+          },
+        })
+      );
+    } else {
+      console.log("Dropped in empty space");
+    }
+    setHoveredInstrument(null);
+    setScaleDown(false);
+    setShouldReset(true);
+  };
 
   useOnClickOutside({
     refs: [draggableCTARef],
@@ -86,7 +145,7 @@ const Dashboard = () => {
     setSelectedTab("");
   }, []);
 
-  const handleDraggableCTAClick = () => {
+  const handleDraggableCTAClick = (e) => {
     setShowBuySell(!showBuySell);
   };
   const handleBuySellClick = useCallback(
@@ -159,17 +218,48 @@ const Dashboard = () => {
         </div>
       </div>
       <div className="dashboard-container">
-        <div className={classnames("left-container", selectedTab && "desktop")}>
-          <Instruments />
+        <div
+          className={classnames(
+            "left-container",
+            selectedTab && "hide-instruments"
+          )}
+        >
+          <Instruments
+            onRefUpdate={updateInstrumentRect}
+            hoveredInstrument={hoveredInstrument}
+          />
         </div>
-        <div className="right-container">
+        <div
+          className={classnames(
+            "right-container",
+            !selectedTab && "hide-right-container"
+          )}
+        >
           <Outlet />
         </div>
-        <Draggable nodeRef={draggableCTARef}>
-          <div
+        <Draggable
+          nodeRef={draggableCTARef}
+          position={shouldReset ? { x: 0, y: 0 } : position}
+          onStart={handleDragStart}
+          onDrag={handleDrag}
+          onStop={handleDragStop}
+        >
+          <motion.div
             onClick={handleDraggableCTAClick}
             ref={draggableCTARef}
             className="draggable-fab"
+            animate={
+              shouldReset
+                ? { x: 0, y: 0, scale: hoveredInstrument ? 0.7 : 1 }
+                : { ...position, scale: hoveredInstrument ? 0.7 : 1 }
+            }
+            transition={{ duration: 0.2, ease: "easeOut" }}
+            onAnimationComplete={() => {
+              if (shouldReset) {
+                setPosition({ x: 0, y: 0 });
+                setShouldReset(false);
+              }
+            }}
           >
             <div>Buy/Sell</div>
             {showBuySell ? (
@@ -190,7 +280,7 @@ const Dashboard = () => {
                 </div>
               </>
             ) : null}
-          </div>
+          </motion.div>
         </Draggable>
       </div>
     </div>
