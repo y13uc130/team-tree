@@ -1,4 +1,3 @@
-// TODO: MODAL ADD ANIMATION
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import classnames from "classnames";
@@ -13,7 +12,7 @@ import {
 import { mapInputValuesWithDefaults } from "../../helpers";
 import { formatNumberWithCommas } from "../../utils";
 
-const TradeModal = ({ selectedTrade, onClose }) => {
+const TradeModal = ({ selectedTrade, onClose, isOpen }) => {
   const {
     symbol,
     info: { value, dayChange },
@@ -28,9 +27,6 @@ const TradeModal = ({ selectedTrade, onClose }) => {
 
   const inputValues = watch();
 
-  useEffect(() => {
-    console.log("selectedTrade", selectedTrade);
-  }, []);
   const handleBuy = () => {
     setTradeType("buy");
   };
@@ -45,7 +41,11 @@ const TradeModal = ({ selectedTrade, onClose }) => {
     onClose();
   };
   return (
-    <ModalContainer onClose={onClose} containerClass={"trade-modal-container"}>
+    <ModalContainer
+      isOpen={isOpen}
+      onClose={onClose}
+      containerClass={"trade-modal-container"}
+    >
       <div className="top-section">
         <div className="top-left-section">
           <div className="bar-chart-icon">

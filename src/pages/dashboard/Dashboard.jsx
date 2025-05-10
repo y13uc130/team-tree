@@ -10,7 +10,6 @@ import { Outlet, useLocation, useNavigate } from "react-router";
 import Instruments from "../../components/instruments/Instruments";
 import TradeModal from "../../components/tradeModal/TradeModal.jsx";
 import { setShowTradeModal } from "../../store/trade/tradeSlice.js";
-import { normalizeByTradingSymbol } from "../../store/instruments/instrumentsSlice.js";
 import { useOnClickOutside } from "../../hooks/useClickOutside.js";
 
 const tabs = ["Holdings", "Orderbook", "Positions"];
@@ -65,7 +64,7 @@ const Dashboard = () => {
     };
   }, []);
 
-  const handleTabPress = (event) => {
+  const handleTabPress = useCallback((event) => {
     const selectedTabVal = event.target.dataset.tabId;
     event.stopPropagation();
     if (!!selectedTabVal) {
@@ -76,11 +75,16 @@ const Dashboard = () => {
       }
       navigate(`/dashboard/${selectedTabVal?.toLowerCase()}`);
     }
-  };
+  }, []);
 
   const handleTradeModalClose = () => {
     dispatch(setShowTradeModal({ active: false }));
   };
+
+  const handleDashboardClick = useCallback(() => {
+    navigate(`/dashboard`);
+    setSelectedTab("");
+  }, []);
 
   const handleDraggableCTAClick = () => {
     setShowBuySell(!showBuySell);
@@ -104,6 +108,26 @@ const Dashboard = () => {
     [instruments]
   );
 
+  const Tabs = () => {
+    return (
+      <>
+        {tabs.map((tab, tabIndex) => {
+          return (
+            <div
+              key={tabIndex}
+              data-tab-id={tab}
+              className={classnames("tab-section", {
+                active: selectedTab === tab,
+              })}
+            >
+              {tab}
+            </div>
+          );
+        })}
+      </>
+    );
+  };
+
   if (loading) return <p>Loading user...</p>;
   if (error) return <p style={{ color: "red" }}>Error: {error}</p>;
   if (!profile) return <p>No user data found.</p>;
@@ -114,30 +138,28 @@ const Dashboard = () => {
         <TradeModal
           onClose={handleTradeModalClose}
           selectedTrade={selectedTrade}
+          isOpen={showTradeModal}
         />
       ) : null}
       <div className="navBar">
         <div className="inner">
-          <div className="home-button">TradeFlow</div>
+          <div onClick={handleDashboardClick} className="home-button">
+            TradeFlow
+          </div>
           <div className="tabs" onClick={handleTabPress}>
-            {tabs.map((tab, tabIndex) => {
-              return (
-                <div
-                  key={tabIndex}
-                  data-tab-id={tab}
-                  className={classnames("tab-section", {
-                    active: selectedTab === tab,
-                  })}
-                >
-                  {tab}
-                </div>
-              );
-            })}
+            <Tabs />
+          </div>
+        </div>
+      </div>
+      <div className="bottom-navbar">
+        <div className="inner">
+          <div className="tabs" onClick={handleTabPress}>
+            <Tabs />
           </div>
         </div>
       </div>
       <div className="dashboard-container">
-        <div className="left-container">
+        <div className={classnames("left-container", selectedTab && "desktop")}>
           <Instruments />
         </div>
         <div className="right-container">

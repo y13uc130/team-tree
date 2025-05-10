@@ -14,6 +14,8 @@
 .App {
   background-color: #f3f5fc;
   height: 100vh;
+  @media (max-width: 768px) {
+  }
 }
 .landingPageContainer {
   display: flex;
@@ -107,6 +109,11 @@
       color: rgb(16, 150, 72);
       width: 14px;
       height: 14px;
+    }
+    @media (max-width: 768px) {
+      width: calc(100% - 20px);
+      // padding: 0;
+      margin: 0 20px;
     }
   }
   .otpsubHeader {
@@ -257,6 +264,13 @@ h1.header {
   padding-top: 40px;
   padding-bottom: 24px;
   max-width: 900px;
+  @media (max-width: 768px) {
+    font-size: 26px;
+    font-weight: 600;
+    text-align: center;
+    padding: 20px 0;
+    max-width: fit-content;
+  }
 }
 
 .brokers-section {
@@ -292,6 +306,26 @@ h1.header {
       img {
         width: 50px;
         aspect-ratio: 1/1;
+      }
+    }
+  }
+  @media (max-width: 768px) {
+    width: fit-content;
+    margin-top: 24px;
+    .inner-content {
+      flex-wrap: wrap;
+      gap: 10px;
+      .broker-box {
+        width: 80px;
+        padding: 6px;
+        font-size: 10px;
+        div {
+          margin-top: 6px;
+        }
+        img {
+          width: 70%;
+          aspect-ratio: 1/1;
+        }
       }
     }
   }

@@ -65,13 +65,16 @@
     @media (max-width: 768px) {
       flex-wrap: wrap;
       .details-section {
-        flex-basis: calc(100% - 10px);
+        flex-basis: calc(50% - 10px);
       }
     }
   }
   .table-container {
     width: 100%;
     overflow-x: auto;
+    @media (max-width: 768px) {
+      display: none;
+    }
   }
 
   .holdings-table {
@@ -124,6 +127,11 @@
     color: rgb(30, 183, 30);
   }
   @media (max-width: 768px) {
+    padding: 20px 20px 0px;
+    .pnl-section {
+      padding-bottom: 12px;
+      margin-bottom: 0;
+    }
     .holdings-table th,
     .holdings-table td {
       padding: 10px 8px;
@@ -139,4 +147,89 @@
       overflow-x: auto;
     }
   }
+}
+
+.holdings-mobile-wrapper {
+  padding: 12px 20px;
+  @media (min-width: 769px) {
+    display: none;
+  }
+}
+
+.holding-card {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 10px 0;
+}
+
+.top-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  font-size: 14px;
+  color: #000;
+  .left-row {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-basis: 50%;
+  }
+}
+
+.meta {
+  margin-right: 8px;
+  font-weight: 400;
+  font-size: 12px;
+  color: #473c3cc2;
+}
+
+.dot {
+  width: 4px;
+  height: 4px;
+  background: #000;
+  border-radius: 50%;
+  margin: 0 8px;
+}
+
+.net-change {
+  color: #f25a5a;
+  margin-left: auto;
+}
+
+.symbol {
+  font-size: 14px;
+  font-weight: 600;
+  margin: 6px 0;
+  color: #000000c0;
+}
+
+.invested-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  color: #000;
+  //   margin-bottom: 4px;
+}
+
+.pnl {
+  color: #f25a5a;
+  font-weight: 500;
+}
+
+.ltp-row {
+  font-size: 14px;
+  color: #000;
+}
+
+.day-chg {
+  color: #f25a5a;
+}
+.loss {
+  color: #f25a5a;
+  font-weight: 500;
+}
+
+.profit {
+  color: #4caf50;
+  font-weight: 500;
 }
