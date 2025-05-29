@@ -1,4 +1,8 @@
-Welcome! This is a Team Tree
+Welcome! This is a Team Tree.
+
+Click here for [Screen recording of the drag/drop functionality and filtering and team-selection](https://drive.google.com/file/d/1Emy3iQdZdgGPDORSbrsE1xEpfaIrSOeW/view?usp=sharing)
+Clicke here to access the [Deployed website link](https://happy-fox.netlify.app/) of this assignment.
+
 
 ## 🚀 Steps to Run the App
 
