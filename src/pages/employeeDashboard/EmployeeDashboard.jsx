@@ -19,7 +19,7 @@ const EmployeeDashboard = () => {
             } catch (err) {
                 console.log(err);
             }
-        }, 2000);
+        }, 200);
     }, []);
 
 
