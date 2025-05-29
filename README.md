@@ -1,7 +1,4 @@
-Welcome! This is a frontend assignment for a stock trading platform where users can view their holdings, positions, and execute basic trade flows.
-
-Click here for [Screenshots of the UI views](https://excalidraw.com/#json=GcroxbkDlRd_GVIc2S87m,yTrmdbOpbjVgFPSCavHMqg)
-Clicke here to access the [Deployed website link](https://funds-india.netlify.app/) of this assignment 
+Welcome! This is a Team Tree
 
 ## 🚀 Steps to Run the App
 
@@ -9,26 +6,15 @@ Clicke here to access the [Deployed website link](https://funds-india.netlify.ap
 2. nvm use 20
 3. npm install
 4. npm run dev
-5. On the login screen, enter a valid phone number
-6. Enter any 6-digit OTP
-7. Select from success / failure / server error to test all login flows
-8. On successful login, the dashboard opens with the Holdings screen as default
-9. You can hover on instruments to see buy/sell option -> which on click -> opens the trading modal
-10. To logout, go to inspect->application->cookies->delete "user-details" cookie & reload
+5. Drag/Drop the employee cards, Have fun. You can filter the names in side bar and select the desired team from dropdown.
 
 ## ⚠️ Notes
 This version is desktop-only (no tablet/mobile responsiveness yet)
 
-Focused mostly on login flow and instruments UI
+Focused mostly on logic of drag and drop with the updated Lines. To make it better and scalable and flexible, we can use react-d3-tree kind of libraries which give us inbuilt functionality of such tree formations.
 
 ## 🛠️ Things to Improve (if more time available)
 
-1. Proper API response mocking
-2. Update holdings/positions after buy/sell actions
-3. Build order book and positions screens
-4. Add mobile/tablet responsive layouts
-5. FAB better UI
-6. Add animations for:
-   a. CTA clicks
-   b. Popup transitions
-   c. Loading indicators
+1. Responsiveness
+2. Restful API mock handling
+3. Test cases to be added.

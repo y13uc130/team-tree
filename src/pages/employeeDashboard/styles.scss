@@ -1,0 +1,9 @@
+.emp-dashboard-container {
+    display: flex;
+    height: 100vh;
+
+    .employee-tree-container {
+        flex: 1;
+        overflow: auto;
+    }
+}

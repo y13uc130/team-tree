@@ -58,6 +58,11 @@ module.exports = {
           filename: "assets/images/[name].[contenthash][ext][query]",
         },
       },
+      {
+        test: /\.json$/,
+        use: 'json-loader',  // This might be unnecessary if you're using Webpack 5 or later
+        type: 'javascript/auto'
+      }
     ],
   },
 
@@ -78,18 +83,18 @@ module.exports = {
       template: "./public/index.html",
       minify: isProduction
         ? {
-            removeComments: true,
-            collapseWhitespace: true,
-            removeRedundantAttributes: true,
-          }
+          removeComments: true,
+          collapseWhitespace: true,
+          removeRedundantAttributes: true,
+        }
         : false,
     }),
     ...(isProduction
       ? [
-          new MiniCssExtractPlugin({
-            filename: "styles.[contenthash].css",
-          }),
-        ]
+        new MiniCssExtractPlugin({
+          filename: "styles.[contenthash].css",
+        }),
+      ]
       : []),
     new CopyPlugin({
       patterns: [

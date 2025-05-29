@@ -1,0 +1,120 @@
+.employee-card {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid gray;
+    background-color: whitesmoke;
+    border-radius: 8px;
+    min-width: 200px;
+    max-width: fit-content;
+    width: auto;
+
+    .image {
+        width: 80px;
+        height: 80px;
+        border-radius: 8px;
+        overflow: hidden;
+        background-color: gray;
+        margin-right: 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        img {
+            width: 100%;
+            height: auto;
+        }
+    }
+
+    .title {
+        font-size: 12px;
+        font-weight: 500;
+    }
+
+    .subtitle {
+        font-size: 10px;
+        font-weight: 400;
+        white-space: nowrap;
+    }
+
+    .team {
+        font-size: 10px;
+        color: gray;
+    }
+}
+
+.elist-container {
+    width: 20%;
+    border-right: 1px solid #ccc;
+    height: 100vh;
+    overflow: hidden;
+
+    position: relative;
+
+    input::placeholder {
+        font-size: 12px;
+    }
+
+    .input-select-container {
+        width: 20%;
+        height: fit-content;
+        position: fixed;
+        top: 0;
+        left: 0;
+        padding: 10px;
+    }
+
+    input {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    select,
+    option {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    select {
+        width: 100%;
+    }
+
+    ul {
+        margin-top: 110px;
+        overflow: auto;
+        height: calc(100% - 110px);
+        padding: 20px;
+
+        li {
+            margin-bottom: 10px;
+
+            position: relative;
+
+            .employee-card {
+                position: relative;
+                min-width: 100%;
+            }
+        }
+    }
+
+    ul::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    ul::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    ul::-webkit-scrollbar-thumb {
+        background-color: #deddddd5;
+        border-radius: 8px;
+        border: 2px solid transparent;
+        background-clip: content-box;
+    }
+
+    ul::-webkit-scrollbar-thumb:hover {
+        background-color: #555555ee;
+    }
+
+}
